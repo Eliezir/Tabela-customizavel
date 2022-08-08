@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+
 body{
   background-color:#202020;
 }
@@ -61,12 +70,16 @@ body{
 }
 
 #textoTd{
-  border-radius:5px;
-  border:2px solid grey;
-  outline:none;
-  font-size:0.9em;
-  padding:10px;
-  font-weight:600;
+    border-radius:5px;
+    background-color:#ECECEC;
+    border:2px solid solid #C4C4C4;
+    outline:none;
+    font-size:0.9em;
+    padding:25px 10px 10px;
+    font-weight:600;
+    color:#343434;
+    width:100%;
+    margin: auto 0;
 }
 
 .disabled{
@@ -84,3 +97,43 @@ body{
 .hidden{
   display:none;
 }
+
+.configs button{
+  border-radius: 5px;
+  padding:0;
+}
+
+#colorTd{
+  width: 100%;
+}
+.input-text{
+  display:flex;
+  margin-bottom:20px;
+  width:100%;
+  background-color:#ECECEC;
+  border-radius:5px;
+  border:2px solid transparent;}
+
+  .input-text span{
+    position:absolute;
+    font-size:0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--medium-grey);
+    margin:45px 20px;
+    cursor:text;
+    transition: all 200ms ease;
+  }
+
+  .input-text .span-active{
+    font-size: 0.7em;
+    margin: 38px 15px;
+  }
+
+  .fa-solid{
+    font-size: 20px;
+  }
+
+  .cor{
+    display:flex;
+  }

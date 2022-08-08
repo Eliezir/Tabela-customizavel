@@ -189,6 +189,26 @@ dir.forEach(function(e){
 
     });
 
+    const handleFocus = ({target}) => {
+        if(target.type==="button"){
+          target = inputs[1]}
+        const span = target.parentElement.firstElementChild;
+        span.classList.add('span-active');  
+      }
+      
+      const handleFocusOut = ({target}) => {
+        if(target.type==="button"){
+          target = inputs[1]}
+        else if(target.value ===''){
+          const span = target.parentElement.firstElementChild;
+          span.classList.remove('span-active');}
+            
+      }
+
+const input_texto = document.getElementById("textoTd")
+input_texto.addEventListener('focus',handleFocus);
+input_texto.addEventListener('focusout',handleFocusOut);
+
 
 
 
