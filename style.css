@@ -98,9 +98,14 @@ body{
   display:none;
 }
 
-.configs button{
-  border-radius: 5px;
+.editTd  button{
+  background-color: transparent;
+  border-radius: 25px;
   padding:0;
+}
+
+.editTd button:hover{
+  background-color:#ECECEC ;
 }
 
 #colorTd{
@@ -110,7 +115,6 @@ body{
   display:flex;
   margin-bottom:20px;
   width:100%;
-  background-color:#ECECEC;
   border-radius:5px;
   border:2px solid transparent;}
 
@@ -120,20 +124,59 @@ body{
     font-weight: 700;
     text-transform: uppercase;
     color: var(--medium-grey);
-    margin:45px 20px;
+    margin:35px 20px;
     cursor:text;
     transition: all 200ms ease;
   }
 
   .input-text .span-active{
     font-size: 0.7em;
-    margin: 38px 15px;
+    margin: 20px 15px;
   }
 
-  .fa-solid{
-    font-size: 20px;
+  .editTd .fa-solid{
+    font-size: 10px;
   }
+
+.color-bar{
+  width: 100%;
+}
 
   .cor{
     display:flex;
   }
+
+  .color-btn{
+    width: 71px;
+  }
+
+  #pain{
+    margin:auto;
+  }
+
+  .cor{
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid transparent;
+  }
+  
+
+  .donwload{
+    margin:10px;
+  }
+
+  .donwload button{
+      display: inline-block;
+      border-radius: 4px;
+      background-color: greenyellow;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 5px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
