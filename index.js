@@ -150,6 +150,11 @@ document.getElementById("paint").addEventListener("click", function(){
     edit(paint,cor)
 })
 
+document.getElementById("paint-white").addEventListener("click", function(){
+    var cor = "white";
+    edit(paint,cor)
+})
+
 /* event listeners para direção da edição(celula/linha/coluna) */
 
 var dir = document.querySelectorAll(".form-check-input");

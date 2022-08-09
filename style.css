@@ -60,7 +60,7 @@ body{
   color:#6320ee;
 }
 
-.texto button{
+.texto button, .cor button{
   margin:5px;
 }
 
@@ -110,7 +110,11 @@ body{
 
 #colorTd{
   width: 100%;
+  border-radius: 5px;
+ /*  padding: 25px 10px 10px; */
 }
+
+
 .input-text{
   display:flex;
   margin-bottom:20px;
@@ -123,7 +127,6 @@ body{
     font-size:0.8em;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--medium-grey);
     margin:35px 20px;
     cursor:text;
     transition: all 200ms ease;
@@ -140,19 +143,21 @@ body{
 
 .color-bar{
   width: 100%;
+  margin: auto 0;
 }
 
   .cor{
     display:flex;
   }
 
-  .color-btn{
-    width: 71px;
+  .color label{
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
   }
 
-  #pain{
-    margin:auto;
-  }
+
 
   .cor{
     display: flex;
@@ -163,20 +168,28 @@ body{
   }
   
 
-  .donwload{
+  .download{
     margin:10px;
   }
 
-  .donwload button{
-      display: inline-block;
-      border-radius: 4px;
-      background-color: greenyellow;
-      border: none;
-      color: #FFFFFF;
-      text-align: center;
-      font-size: 28px;
-      padding: 5px;
-      width: 200px;
-      transition: all 0.5s;
-      cursor: pointer;
-      margin: 5px;
+  .download button{
+    border-radius:10px;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;}
+
+    
+    .download button:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
