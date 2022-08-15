@@ -220,7 +220,7 @@ var opt = {
   filename:     'table.pdf',
   image:        { type: 'jpeg', quality: 0.98 },
   html2canvas:  { scale: 2 },
-  jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+  jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
 };
 
 document.getElementById("donwload").addEventListener("click",function(){
