@@ -5,7 +5,8 @@ var tab_l = prompt("insira  um número de linhas");
 var tabela_linhas = parseInt(tab_l);
 var tab_c = prompt("insira  um número de colunas");
 var tabela_colunas = parseInt(tab_c);
-
+var directions = ["Td","Tr","Col"]
+var contador_direction = 0;
 /* variáveis */
 /* var tabela_linhas = 8;
 var tabela_colunas = 7; */
@@ -59,7 +60,6 @@ function editRowOrColumn(func,direction){
 function clearFocus(){
 var celulaFoco = document.getElementsByClassName('hover')
 for (var i = celulaFoco.length-1; i > -1; i--) {
-    console.log(celulaFoco[i])
     celulaFoco[i].classList.remove('hover');}}
 
 
@@ -84,43 +84,79 @@ function focusDirections(){
     }
 
 
+/* Muda a célula/linha/coluna selecionada */
+    function Up(){
+        focusDirections();
+        selectedRow --
+        if (selectedRow < 0){selectedRow=tabela_linhas-1};
+        focusDirections();
+        document.getElementById("L").innerHTML="L"+(selectedRow+1);
+    }
+    function Down(){
+        focusDirections();
+         selectedRow++;
+         if (selectedRow > tabela_linhas-1){selectedRow=0};
+         focusDirections();
+         document.getElementById("L").innerHTML="L"+(selectedRow+1);
+     }
+     function Left(){
+        focusDirections();
+        selectedCol --;
+        if (selectedCol < 0 ){selectedCol=tabela_colunas-1};
+        focusDirections();
+        document.getElementById("C").innerHTML="C"+(selectedCol+1);
+    }
+    function Right(){
+        focusDirections();
+        selectedCol ++;
+        if (selectedCol > tabela_colunas-1){selectedCol=0}
+        focusDirections();
+        document.getElementById("C").innerHTML="C"+(selectedCol+1);
+    }
 
-document.getElementById("up").addEventListener("click", function(){
-    /* colunas_linha[selectedRow][selectedCol].classList.remove("hover"); */
-    focusDirections();
-    selectedRow --
-    if (selectedRow < 0){selectedRow=tabela_linhas-1};
-    /* colunas_linha[selectedRow][selectedCol].classList.add("hover"); */
-    focusDirections();
-    document.getElementById("L").innerHTML="L"+(selectedRow+1);
+
+/* add event listeners para os botões svg no menu de configs lateral */
+document.getElementById("up").addEventListener("click", function(){Up();});
+document.getElementById("down").addEventListener("click", function(){Down();});
+document.getElementById("left").addEventListener("click", function(){Left();});
+document.getElementById("right").addEventListener("click", function(){Right();});
+
+
+/* add event listeners para as setas do teclado */
+document.addEventListener("keydown", function (event) {
+    switch(event.key){
+        case "ArrowUp":
+        Up();
+        break;
+        case "ArrowDown":
+        Down();
+        break;
+        case "ArrowLeft":
+        Left(); 
+        break;
+        case "ArrowRight":
+        Right(); 
+        break;
+        case "AltGraph":
+        contador_direction ++;
+        if(contador_direction >2) contador_direction = 0;
+        direction = directions[contador_direction]
+        if(direction == "Col"){col();
+            check_box = document.getElementById("col")
+            check_box.checked = true;}
+        else if(direction == "Tr"){Tr();
+            check_box = document.getElementById("tr")
+            check_box.checked = true;}
+        else if(direction == "Td"){Td();
+            check_box = document.getElementById("td")
+            check_box.checked = true;}
+        clearFocus();
+        focusDirections();
+        break;
+    }
 });
-document.getElementById("down").addEventListener("click", function(){
-   /*  colunas_linha[selectedRow][selectedCol].classList.remove("hover"); */
-   focusDirections();
-    selectedRow++;
-    if (selectedRow > tabela_linhas-1){selectedRow=0};
-    /* colunas_linha[selectedRow][selectedCol].classList.add("hover"); */
-    focusDirections();
-    document.getElementById("L").innerHTML="L"+(selectedRow+1);
-});
-document.getElementById("left").addEventListener("click", function(){
-    /* colunas_linha[selectedRow][selectedCol].classList.remove("hover"); */
-    focusDirections();
-    selectedCol --;
-    if (selectedCol < 0 ){selectedCol=tabela_colunas-1};
-    /* colunas_linha[selectedRow][selectedCol].classList.add("hover"); */
-    focusDirections();
-    document.getElementById("C").innerHTML="C"+(selectedCol+1);
-});
-document.getElementById("right").addEventListener("click", function(){
-    /* colunas_linha[selectedRow][selectedCol].classList.remove("hover"); */
-    focusDirections();
-    selectedCol ++;
-    if (selectedCol > tabela_colunas-1){selectedCol=0}
-    /* colunas_linha[selectedRow][selectedCol].classList.add("hover"); */
-    focusDirections();
-    document.getElementById("C").innerHTML="C"+(selectedCol+1);
-});
+
+
 
 /* event listeners edit texto delete texto */
 
@@ -168,25 +204,37 @@ function enabled(dir1,dir2){
 }
 
 
+function col(){
+    document.getElementById("L").classList.add("hidden");
+    document.getElementById("C").classList.remove("hidden");
+    disabled("up","down");
+    enabled("left","right")
+    
+}
+
+function Tr(){
+    document.getElementById("C").classList.add("hidden");
+    document.getElementById("L").classList.remove("hidden");
+    enabled("up","down");
+    disabled("left","right");
+    
+}
+
+function Td(){
+    document.getElementById("L").classList.remove("hidden");
+        document.getElementById("C").classList.remove("hidden");
+        enabled("left","right");
+        enabled("up","down");
+        
+}
+
 dir.forEach(function(e){
     e.addEventListener("click", function(){
         direction = this.value;
 /* desabilitando controles, ao selecionar coluna só poderá andar verticalmente ... */
-    if(direction == "Col"){ 
-        document.getElementById("L").classList.add("hidden");
-        document.getElementById("C").classList.remove("hidden");
-       disabled("up","down");
-       enabled("left","right")}
-    else if(direction == "Tr"){
-        document.getElementById("C").classList.add("hidden");
-        document.getElementById("L").classList.remove("hidden");
-        enabled("up","down");
-        disabled("left","right");}
-    else if(direction == "Td"){  
-        document.getElementById("L").classList.remove("hidden");
-        document.getElementById("C").classList.remove("hidden");
-        enabled("left","right");
-        enabled("up","down");}
+    if(direction == "Col"){col();contador_direction = 0;}
+    else if(direction == "Tr"){Tr(); contador_direction = 1;}
+    else if(direction == "Td"){Td();contador_direction = 2;}
         clearFocus();
         focusDirections();
       });
@@ -209,23 +257,29 @@ dir.forEach(function(e){
             
       }
 
+      
 const input_texto = document.getElementById("textoTd")
 input_texto.addEventListener('focus',handleFocus);
 input_texto.addEventListener('focusout',handleFocusOut);
 
 
-;
-var opt = {
-  margin:       1,
-  filename:     'table.pdf',
-  image:        { type: 'jpeg', quality: 0.98 },
-  html2canvas:  { scale: 2 },
-  jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
-};
+/* donwload html 2 pdf */
 
+var tb_name;
 document.getElementById("donwload").addEventListener("click",function(){
+    tb_name = prompt("Insira o nome da tabela")
+    var opt = {
+        margin:       1,
+        filename:     tb_name+".pdf",
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
+      };
     html2pdf().set(opt).from(table).save()
 })
+
+
+
 
 
 
